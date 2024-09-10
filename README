@@ -1,0 +1,26 @@
+Description
+The B_COUNTER is a VHDL design for an 8-bit counter with shifting capabilities. This design implements a counter that can either increment its value or 
+perform a shift operation based on the input control signals.
+
+Entity Description
+Ports
+clk (in std_logic): Clock input signal. The counter operation is synchronized to this clock signal.
+rst (in std_logic): Asynchronous reset input signal. When asserted (logic '0'), the counter value is reset to zero.
+Din (in std_logic): Data input signal used for the shift operation. This input is shifted into the counter's least significant bit (LSB) when the shift signal is asserted.
+shift (in std_logic): Control signal for shifting. When asserted (logic '1'), the counter performs a shift operation, 
+moving the current value left and inserting Din at the LSB. When deasserted (logic '0'), the counter performs an increment operation.
+Qout (out std_logic_vector(7 downto 0)): 8-bit output signal representing the current value of the counter.
+Functionality
+The B_COUNTER operates as follows:
+
+Reset Operation: When the rst signal is active (logic '0'), the counter value (Qv) is reset to 00000000.
+
+Clock Edge Sensitivity: On the rising edge of the clk signal:
+
+Shift Operation: If the shift signal is asserted (logic '1'), the counter value (Qv) is shifted left by one bit, and the Din input value is inserted into the LSB of Qv.
+Increment Operation: If the shift signal is not asserted (logic '0'), the counter value (Qv) is incremented by 1.
+Output Assignment: The current value of the counter (Qv) is continuously assigned to the output port Qout.
+
+Example Usage
+To use the B_COUNTER in a simulation or on an FPGA, connect the clock (clk), reset (rst), data input (Din), 
+and shift control (shift) signals to appropriate sources. Monitor the output signal Qout to observe the counter's behavior.
